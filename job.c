@@ -591,8 +591,8 @@ prepare_pipe(struct job_pipe *p, int *fd)
 	if (output_mask == NULL || p->fd > largest_fd) {
 		int fdn, ofdn;
 
-		fdn = howmany(p->fd+1, NFDBITS);
-		ofdn = howmany(largest_fd+1, NFDBITS);
+		fdn = howmany(p->fd+1, 8*sizeof(fd_mask));
+		ofdn = howmany(largest_fd+1, 8*sizeof(fd_mask));
 
 		if (fdn != ofdn) {
 			output_mask = emult_realloc(output_mask, fdn,
