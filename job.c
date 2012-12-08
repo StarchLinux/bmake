@@ -1016,7 +1016,7 @@ Job_CatchChildren()
 	if (nJobs == 0)
 		return;
 
-	while ((pid = waitpid(WAIT_ANY, &status, WNOHANG)) > 0) {
+	while ((pid = waitpid(-1, &status, WNOHANG)) > 0) {
 		handle_all_signals();
 
 		jnode = Lst_Find(&runningJobs, JobCmpPid, &pid);
@@ -1328,7 +1328,7 @@ Job_AbortAll(void)
 	/*
 	 * Catch as many children as want to report in at first, then give up
 	 */
-	while (waitpid(WAIT_ANY, &foo, WNOHANG) > 0)
+	while (waitpid(-1, &foo, WNOHANG) > 0)
 		continue;
 }
 
