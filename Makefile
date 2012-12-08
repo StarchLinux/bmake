@@ -6,7 +6,6 @@ HOSTCFLAGS+= -I${.OBJDIR} -I${.CURDIR}
 CDIAGFLAGS=-Wall -W -Wno-char-subscripts -Wstrict-prototypes -pedantic \
 	-Wmissing-prototypes
 
-CDEFS+=-DUSE_TIMESPEC
 CDEFS+=-DHAS_BOOL_H
 CDEFS+=-DHAS_PATHS_H
 CDEFS+=-DHAS_EXTENDED_GETCWD
