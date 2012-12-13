@@ -195,7 +195,7 @@ MainParseArgs(int argc, char **argv)
 {
 	int c, optend;
 
-#define OPTFLAGS "BD:I:PSV:d:ef:ij:km:nqrst"
+#define OPTFLAGS "BC:D:I:PSV:d:ef:ij:km:nqrst"
 #define OPTLETTERS "BPSiknqrst"
 
 	optind = 1;	/* since we're called more than once */
@@ -212,6 +212,11 @@ MainParseArgs(int argc, char **argv)
 		}
 		c = optend ? -1 : getopt(argc, argv, OPTFLAGS);
 		switch (c) {
+		case 'C':
+		        if (chdir (optarg) < 0) {
+		                fprintf (stderr, "%s: failed to chdir to %s\n", argv[0], optarg);
+		                exit (1);
+		        }
 		case 'D':
 			Var_Set(optarg, "1");
 			record_option(c, optarg);
